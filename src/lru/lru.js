@@ -18,7 +18,7 @@ class LRU {
     // Instantiate with a predefined size.
     constructor(size) {
         if (size < 1) {
-            throw 'Size too small, must be >= 2';
+            throw "Size too small, must be >= 2";
         }
         this.MAX_SIZE = size;
 
@@ -34,7 +34,7 @@ class LRU {
     }
 
     set(key, val) {
-        // Get existing entry for this key, if any.
+    // Get existing entry for this key, if any.
         let entry = this._getAndMoveToEnd(key); // may be null
         if (entry) {
             entry.value = val;
@@ -74,20 +74,20 @@ class LRU {
     _assertOk() {
         if (this.numEntries === 0) {
             if (this.oldest || this.newest) {
-                throw 'Should not have oldest or newest in empty LRU';
+                throw "Should not have oldest or newest in empty LRU";
             }
         } else {
             if (this.numEntries > this.MAX_SIZE) {
-                throw 'Too many entries in LRU';
+                throw "Too many entries in LRU";
             }
             if (!this.oldest || !this.newest) {
-                throw 'Missing oldest or newest ptr in non-empty LRU';
+                throw "Missing oldest or newest ptr in non-empty LRU";
             }
             if (this.oldest.prev) {
-                throw 'Oldest prev is non-null';
+                throw "Oldest prev is non-null";
             }
             if (this.newest.next) {
-                throw 'Newest next is non-null';
+                throw "Newest next is non-null";
             }
         }
     }
@@ -100,7 +100,7 @@ class LRU {
             if (!next) {
                 // It's the newest, nothing to do!
                 if (this.newest !== entry) {
-                    throw 'Unexpected entry with no next ptr, but not newest';
+                    throw "Unexpected entry with no next ptr, but not newest";
                 }
             } else {
                 if (prev) {
@@ -110,7 +110,7 @@ class LRU {
                 } else {
                     // It's the oldest
                     if (this.oldest !== entry) {
-                        throw 'Unexpected entry with no prev ptr, but not oldest';
+                        throw "Unexpected entry with no prev ptr, but not oldest";
                     }
                     this.oldest = next;
                     next.prev = null;
@@ -138,7 +138,7 @@ class LRU {
         if (all.length !== this.numEntries) {
             throw `Only found ${all.length} elements in sequence, but numEntries == ${this.numEntries}`;
         }
-        return `[${all.join(' ')}] (${this.numEntries} entries)`;
+        return `[${all.join(" ")}] (${this.numEntries} entries)`;
     }
 
 }
