@@ -1,0 +1,27 @@
+{
+  "name": "puzzles",
+  "version": "1.0.0",
+  "description": "Algo questions, interesting coding exercises",
+  "keywords": [],
+  "homepage": "https://github.com/grconrad/puzzles#readme",
+  "bugs": {
+    "url": "https://github.com/grconrad/puzzles/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grconrad/puzzles.git"
+  },
+  "license": "ISC",
+  "author": "Richard Conrad (grconrad@hotmail.com)",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "pre-commit": [
+    "test"
+  ],
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "pre-commit": "^1.2.2"
+  }
+}
