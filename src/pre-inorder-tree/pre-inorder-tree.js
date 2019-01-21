@@ -18,8 +18,9 @@ You should return the following tree:
 d  e f  g
 */
 
-// Observation: First in preorder is always root of tree, and last in both orders is "rightmost"
-// Thought: Build up tree one node at a time, in "preorder" order, finding same node in "inorder" ordering
+// Observation: First in preorder is always root of tree, and last in both orders is "rightmost".
+// Thought: Build up tree one node at a time, in "preorder" order, finding same node in "inorder" ordering.
+// Contract of each node: value is at 'val', left child is at 'lt', right child is at 'rt' property.
 
 /*
  * buildTreeFromPreAndIn
@@ -62,9 +63,9 @@ function buildTreeFromPreAndIn(preorder, inorder) {
  * buildTreeFromPostAndIn
  *
  * @param {Array} postorder
- *   [post(a.left), post(a.right), a] e.g. ['d', 'e', 'b', 'f', 'g', 'c', 'a']
+ *   [post(root.left), post(root.right), root.val]
  * @param {Array} inorder
- *   [in(a.left), a, in(a.right)]   e.g. ['d', 'b', 'e', 'a', 'f', 'c', 'g']
+ *   [in(root.left), root.val, in(root.right)]
  */
 function buildTreeFromPostAndIn(postorder, inorder) {
   let root = null;
