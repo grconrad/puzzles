@@ -1,2 +1,2 @@
 # puzzles
-Algo questions, interesting coding exercises
+Interesting coding puzzles and my JavaScript solutions for them
