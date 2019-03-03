@@ -1,40 +1,46 @@
+// Logic to be tested
 const flattenArray = require("./flatten-array");
 
-test("Basic functionality", () => {
-  expect(flattenArray([
-    1,
-    [
-      2,
-      3
-    ],
-    [
-      [
-        [
-          4
-        ]
-      ]
-    ],
-    [
-      [
-        5,
-        6,
-        7
-      ]
-    ],
-    8,
-    [
-      9
-    ]
-  ])
-  ).toEqual([
-    1,
+// Test data
+const TEST_ARRAY = [
+  1,
+  [
     2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
+    3
+  ],
+  [
+    [
+      [
+        4
+      ]
+    ]
+  ],
+  [
+    [
+      5,
+      6,
+      7
+    ]
+  ],
+  8,
+  [
     9
-  ]);
+  ]
+];
+const TEST_ARRAY_FLATTENED = [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+];
+
+test("Basic functionality", () => {
+
+  expect(flattenArray(TEST_ARRAY)).toEqual(TEST_ARRAY_FLATTENED);
+
 });

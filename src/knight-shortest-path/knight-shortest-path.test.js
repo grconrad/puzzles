@@ -13,10 +13,12 @@ const answers = [
 ];
 
 test("All test data", () => {
+
   const max = answers.length;
   for (let x = 0; x < max; x++) {
     for (let y = 0; y < max; y++) {
       expect(findMovesToXY(x, y).length).toEqual(answers[x][y]);
     }
   }
+
 });
