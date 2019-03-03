@@ -1,0 +1,40 @@
+const flattenArray = require("./flatten-array");
+
+test("Basic functionality", () => {
+  expect(flattenArray([
+    1,
+    [
+      2,
+      3
+    ],
+    [
+      [
+        [
+          4
+        ]
+      ]
+    ],
+    [
+      [
+        5,
+        6,
+        7
+      ]
+    ],
+    8,
+    [
+      9
+    ]
+  ])
+  ).toEqual([
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ]);
+});
