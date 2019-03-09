@@ -28,7 +28,7 @@ being a bit better in practice because "most" values don't need to bubble up mor
 levels. There's a more clever way to build a heap in O(N) time.
 */
 
-const {MaxHeap, MinHeap} = require("./heap");
+const {MaxHeap, MinHeap} = require("../heap/heap");
 
 function log(/* s */) {
   // console.log(s); // eslint-disable-line
