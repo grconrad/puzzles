@@ -22,8 +22,12 @@ class Heap {
 
   // Public API
 
-  toString() {
-    return `[${this.entries}] length=${this.entries.length}`;
+  get size() {
+    return this.entries.length;
+  }
+
+  hasMore() {
+    return (this.size !== 0);
   }
 
   print() {
@@ -31,11 +35,17 @@ class Heap {
   }
 
   peek() {
-    return (this.entries.length > 0) ? this.entries[0] : null;
+    return (this.size > 0) ? this.entries[0] : null;
+  }
+
+  insert(...values) {
+    values.forEach(value => {
+      this._insert(value);
+    });
   }
 
   extract() {
-    if (this.entries.length === 0) {
+    if (this.size === 0) {
       return null;
     }
 
@@ -47,7 +57,7 @@ class Heap {
     // Pull off last entry.
     const lastVal = this.entries.pop();
 
-    if (this.entries.length > 0) {
+    if (this.size > 0) {
       this.entries[0] = lastVal;
 
       // Bubble down.
@@ -59,18 +69,23 @@ class Heap {
     return result;
   }
 
-  insert(...values) {
-    values.forEach(value => {
-      this._insert(value);
-    });
+  /**
+   * Remove a value, if it exists in the heap.
+   *
+   * @param {*} value
+   * @returns {Boolean}
+   *   true iff value was found and removed
+   */
+  remove(value) {
+    if (this.size === 0) {
+      return false;
+    }
+
+    return this._remove(value, 0);
   }
 
-  hasMore() {
-    return (this.entries.length !== 0);
-  }
-
-  get size() {
-    return this.entries.length;
+  toString() {
+    return `[${this.entries}] length=${this.size}`;
   }
 
   // Internals
@@ -94,7 +109,7 @@ class Heap {
     this.entries.push(value);
 
     // Now bubble it up to where it's needed.
-    this._bubbleUp(this.entries.length - 1);
+    this._bubbleUp(this.size - 1);
 
     this.print();
   }
@@ -108,6 +123,45 @@ class Heap {
     const val1 = this.entries[idx1],
       val2 = this.entries[idx2];
     return (this.isMinHeap ? (val1 <= val2) : (val1 >= val2));
+  }
+
+  /**
+   * @param {?} value
+   * @param {Number} idx
+   * @returns {Boolean} true iff found and removed
+   */
+  _remove(value, idx) {
+    const thisValue = this.entries[idx];
+
+    if (value === thisValue) {
+      // Pull off last entry.
+      const lastVal = this.entries.pop();
+
+      if (idx < this.size) {
+        this.entries[idx] = lastVal;
+
+        // Bubble down.
+        this._bubbleDown(idx);
+      }
+
+      return true;
+    }
+
+    if ((this.isMinHeap && value > thisValue) || (!this.isMinHeap && value < thisValue)) {
+      const len = this.size;
+
+      let leftChildIdx = this._leftChildIdx(idx);
+      if (leftChildIdx < len && this._remove(value, leftChildIdx)) {
+        return true;
+      }
+
+      let rightChildIdx = this._rightChildIdx(idx);
+      if (rightChildIdx < len && this._remove(value, rightChildIdx)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   // Used when inserting
@@ -128,7 +182,7 @@ class Heap {
 
   // Used when extracting
   _bubbleDown(idx) {
-    const len = this.entries.length;
+    const len = this.size;
     while (true) { // eslint-disable-line no-constant-condition
       this.print();
       // Which child (if any) should we swap with to "bubble down" from position idx?
