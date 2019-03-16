@@ -19,7 +19,7 @@
     "cleantest": "npm run clean && npm i && npm test",
     "lint": "eslint src",
     "lintfix": "eslint --fix src",
-    "test": "jest"
+    "test": "TERM=dumb jest"
   },
   "pre-commit": [
     "lint",
