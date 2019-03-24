@@ -18,7 +18,7 @@
     "clean": "rm -rf node_modules coverage",
     "cleantest": "npm run clean && npm i && npm test",
     "lint": "eslint src",
-    "lintfix": "eslint --fix src",
+    "lintfix": "npm run lint -- --fix",
     "test": "TERM=dumb jest"
   },
   "pre-commit": [
