@@ -16,9 +16,9 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf node_modules coverage",
-    "cleantest": "npm run clean && npm i && npm test",
+    "cleantest": "yarn clean && yarn install && yarn test",
     "lint": "eslint src",
-    "lintfix": "npm run lint -- --fix",
+    "lintfix": "yarn lint --fix",
     "test": "TERM=dumb jest"
   },
   "pre-commit": [
